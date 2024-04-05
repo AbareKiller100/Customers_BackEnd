@@ -1,10 +1,10 @@
-const {createNewCustomer}= require('../../controllers/customers/CreateCustomer');
+const createNewCustomer= require('../../controllers/customers/CreateCustomer');
 const { getAllCustomers, getCustomersByID, getCustomerByName } = require('../../controllers/customers/getCustomers');
 
 const createCustomerHandler= async(req, res)=>{
     try{
-        const {name, address, phone, email, rut, service_start, service_type}= req.body;
-        const response= await createNewCustomer({name, address, phone, email, rut, service_start, service_type});
+        const {customer_name, customer_address, customer_phone, customer_email, customer_rut, service_start, service_type}= req.body;
+        const response= await createNewCustomer({customer_name, customer_address, customer_phone, customer_email, customer_rut, service_start, service_type});
         res.status(200).json(response)
     } catch(error){
         console.error(error);

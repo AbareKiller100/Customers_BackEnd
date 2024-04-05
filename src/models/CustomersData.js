@@ -50,7 +50,7 @@ module.exports = (sequelize) => {
 
   CustomersData.beforeCreate((customerData, options)=>{
     const digVerif= calculo(customerData.customer_rut);
-    customerData.customer_rut += digVerif;
+    customerData.customer_rut += `-${digVerif}`;
   })
   
   const calculo= (rut)=>{

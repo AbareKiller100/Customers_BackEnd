@@ -42,7 +42,7 @@ const { CustomersData, ConsumptionHistory, PaymentRecords, Rates } = sequelize.m
 // Aca vendrian las relaciones
 // Product.hasMany(Reviews);
 
-CustomersData.hasOne(ConsumptionHistory);
+CustomersData.hasMany(ConsumptionHistory);
 ConsumptionHistory.belongsTo(CustomersData);
 
 CustomersData.hasMany(PaymentRecords);

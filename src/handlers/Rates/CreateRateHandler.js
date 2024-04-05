@@ -11,4 +11,4 @@ const createRateHandler= async(req, res)=>{
     }
 }
 
-module.exports= createRateHandler;
+module.exports= {createRateHandler};

@@ -1,7 +1,9 @@
-const {ConsumptionHistory, CustomersData}= require('../../db');
+const {CustomersData, ConsumptionHistory}= require('../../db');
 
 const createNewConstumption= async (form)=>{
     const {meter_reading, meter_reading_date}= form;
+
+    console.log(form)
 
     if(!meter_reading || !meter_reading_date){
         throw new Error('Faltan datos requeridos');
@@ -9,19 +11,24 @@ const createNewConstumption= async (form)=>{
 
     const newConsumption= {meter_reading, meter_reading_date};
 
-    const createConumption= await ConsumptionHistory.create(newConsumption);
+    const createConsumption= await ConsumptionHistory.create(newConsumption);
 
-    if(form.customer){
-        const customer= await CustomersData.findByPk(form.customer);
-        
+    console.log(createConsumption);
+
+    if(form.CustomersDatumCustomerId){
+        const customer= await CustomersData.findByPk(form.CustomersDatumCustomerId);
+        console.log(customer);
         if(!customer){
             throw new Error('Este cliente no está registrado');  
         } else{
-            await createConumption.setCustomersData(customer);
+            createConsumption.CustomersDatumCustomerId = customer.dataValues.customer_id;
+            await createConsumption.save();
         }
+    } else{
+        throw new Error('Este historial no corresponde a ningún cliente');
     }
 
-    return createConumption;
+    return createConsumption;
 }
 
 module.exports= createNewConstumption;

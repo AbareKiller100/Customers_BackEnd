@@ -1,4 +1,4 @@
-const {createNewPay}= require('../../controllers/payment/CreatePay');
+const createNewPay= require('../../controllers/payment/CreatePay');
 
 const createPaymentHandler= async(req, res)=>{
     try{
@@ -11,4 +11,4 @@ const createPaymentHandler= async(req, res)=>{
     }
 }
 
-module.exports= createPaymentHandler;
+module.exports={createPaymentHandler};
